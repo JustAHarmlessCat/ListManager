@@ -1,0 +1,16 @@
+.textfield {
+  margin: 0;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 50%;
+}
+
+.newListButton {
+  position: absolute;
+  top: 5px;
+  right: 400px;
+  width: 10%;
+}

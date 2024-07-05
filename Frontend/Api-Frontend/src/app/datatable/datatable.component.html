@@ -1,0 +1,129 @@
+<header>
+  <button
+    mat-raised-button
+    color="secondary"
+    aria-label="Save"
+    (click)="saveData()"
+    *ngIf="validList"
+  >
+    <mat-icon>save</mat-icon>
+    Save
+  </button>
+</header>
+
+<button
+  mat-fab
+  color="primary"
+  aria-label="Add"
+  (click)="showAddTextField(); currentAction = 'Add'"
+  *ngIf="validList"
+>
+  <mat-icon>add</mat-icon>
+  Add
+</button>
+<mat-card *ngIf="deleteConfirmation == true" class="deleteConfirmation">
+  <mat-card-content>
+    <h1>Are you sure you want to delete this item?</h1>
+    <button
+      class="deleteButton"
+      mat-raised-button
+      color="warn"
+      (click)="deleteItem(elementToDelete); deleteConfirmation = false"
+    >
+      Yes
+    </button>
+    <button
+      class="deleteButton"
+      mat-raised-button
+      color="primary"
+      (click)="deleteConfirmation = false"
+    >
+      No
+    </button>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="AddTextFieldVisible" class="textfield">
+  <mat-card-content>
+    <mat-form-field>
+      <textarea
+        rows="15"
+        cols="30"
+        matInput
+        class="addTextField"
+        placeholder="Enter the content"
+        value=""
+        [(ngModel)]="content"
+        class="inputfield"
+      ></textarea>
+    </mat-form-field>
+    <button
+      class="addButton"
+      mat-raised-button
+      color="primary"
+      *ngIf="currentAction === 'Add'"
+      (click)="newItem(content)"
+    >
+      Add
+    </button>
+    <button
+      class="addButton"
+      mat-raised-button
+      color="primary"
+      *ngIf="currentAction === 'Edit'"
+      (click)="finaleditItem(content)"
+    >
+      Save
+    </button>
+    <button class="closePopup" mat-icon-button (click)="closePopup()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-content>
+</mat-card>
+<h1 *ngIf="validList == false">Invalid List</h1>
+<div *ngIf="validList">
+  <table mat-table matSort #empTbSort="matSort" [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <th
+        mat-header-cell
+        mat-sort-header
+        sortActionDescription="Sort by Number"
+        *matHeaderCellDef
+      >
+        Entry Number
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Content</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="editItem(element.id - 1)"
+        >
+          Edit
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="deleteConfirmation = true; elementToDelete = element.id - 1"
+        >
+          Delete
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    [length]="dataSource.data.length"
+    [pageSize]="5"
+    [pageIndex]="0"
+  ></mat-paginator>
+</div>

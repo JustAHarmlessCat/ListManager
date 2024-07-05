@@ -1,0 +1,12 @@
+<body>
+  <mat-form-field>
+    <mat-label>User</mat-label>
+    <input matInput [(ngModel)]="username" />
+  </mat-form-field>
+  <a href="/">
+    <button mat-stroked-button (click)="setUser(username)">Login</button>
+  </a>
+  <a href="/">
+    <button mat-stroked-button color="warn" (click)="logout()">Logout</button>
+  </a>
+</body>

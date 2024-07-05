@@ -1,0 +1,42 @@
+.mat-column-id {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+.mat-column-actions {
+  width: 32px;
+  border-left: 1px solid currentColor;
+  padding-left: 24px;
+  text-align: center;
+}
+
+.textfield {
+  margin: 0;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 20%;
+}
+
+.deleteConfirmation {
+  margin: 0;
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 50%;
+}
+
+.deleteButton {
+  margin: 0;
+  top: 50%;
+  position: relative;
+  left: 25% !important;
+  transform: translate(-50%, -50%);
+  height: 50%;
+  width: 40%;
+}

@@ -1,0 +1,48 @@
+<main class="main">
+  <header>
+    <mat-toolbar>
+      <app-user></app-user>
+    </mat-toolbar>
+  </header>
+  <div class="content">
+    <div class="flex-container">
+      <button
+        mat-fab
+        extended
+        color="primary"
+        class="TopButton"
+        (click)="refresh()"
+      >
+        <mat-icon>sync</mat-icon>
+        Refresh
+      </button>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Your Lists</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <mat-list-item *ngFor="let option of lists">
+            <button
+              mat-button
+              color="primary"
+              (click)="showDataTable(); chosenList = option"
+            >
+              <mat-icon>list</mat-icon> {{ option }}
+            </button>
+            <a href="/">
+              <button mat-button color="warn" (click)="deleteList(option)">
+                Delete List
+              </button>
+            </a>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="newList">
+    <app-new-list></app-new-list>
+  </div>
+  <div id="comp-render" *ngIf="display">
+    <app-datatable [chosenList]="chosenList"></app-datatable>
+  </div>
+</main>
